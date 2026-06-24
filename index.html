@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SwiftAI Hub — AI Tools for Local Professional Offices</title>
+  <meta name="description" content="SwiftAI Hub builds AI tools for dental offices, law firms, and real estate practices. Practical software that captures leads, answers questions, and routes work to your team." />
+  <link rel="canonical" href="https://swiftaihub.ai/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:       #0D1117;
+      --ink-soft:  #1C2333;
+      --rule:      #232D3F;
+      --muted:     #4A5568;
+      --body-text: #8892A4;
+      --white:     #F0F4FF;
+      --accent:    #4F8EF7;
+      --accent-2:  #7C5CFC;
+      --glow:      rgba(79, 142, 247, 0.15);
+      --font-display: 'Syne', sans-serif;
+      --font-body:    'Inter', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--ink);
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 40px;
+      height: 64px;
+      background: rgba(13,17,23,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+    .nav-logo span { color: var(--accent); }
+
+    .nav-links {
+      display: flex; gap: 32px; list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.875rem;
+      color: var(--body-text);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+
+    .nav-cta {
+      background: var(--accent);
+      color: var(--ink) !important;
+      font-weight: 600;
+      font-size: 0.875rem;
+      padding: 8px 20px;
+      border-radius: 6px;
+      transition: opacity 0.2s;
+    }
+    .nav-cta:hover { opacity: 0.85; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px; left: 50%; transform: translateX(-50%);
+      width: 800px; height: 800px;
+      background: radial-gradient(circle, rgba(79,142,247,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(79,142,247,0.1);
+      border: 1px solid rgba(79,142,247,0.25);
+      border-radius: 100px;
+      padding: 6px 16px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 32px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      max-width: 800px;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: 1.125rem;
+      color: var(--body-text);
+      max-width: 520px;
+      margin-bottom: 48px;
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--ink);
+      font-weight: 600;
+      font-size: 0.9375rem;
+      padding: 14px 28px;
+      border-radius: 8px;
+      transition: opacity 0.2s, transform 0.2s;
+      display: inline-block;
+    }
+    .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--white);
+      font-weight: 500;
+      font-size: 0.9375rem;
+      padding: 14px 28px;
+      border-radius: 8px;
+      border: 1px solid var(--rule);
+      transition: border-color 0.2s, transform 0.2s;
+      display: inline-block;
+    }
+    .btn-ghost:hover { border-color: var(--accent); transform: translateY(-1px); }
+
+    /* ── SECTION SHARED ── */
+    section { padding: 96px 24px; }
+
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .section-heading {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+    }
+
+    .section-sub {
+      color: var(--body-text);
+      font-size: 1.0625rem;
+      max-width: 560px;
+      line-height: 1.7;
+    }
+
+    /* ── PRODUCTS ── */
+    .products { background: var(--ink-soft); }
+
+    .products-intro {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 40px;
+      margin-bottom: 64px;
+      flex-wrap: wrap;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+
+    .product-card {
+      background: var(--ink);
+      border: 1px solid var(--rule);
+      border-radius: 12px;
+      padding: 36px 32px;
+      transition: border-color 0.25s, transform 0.25s;
+      display: flex; flex-direction: column;
+    }
+    .product-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+    }
+
+    .product-card.featured {
+      border-color: rgba(79,142,247,0.4);
+      background: linear-gradient(135deg, rgba(79,142,247,0.06), var(--ink));
+    }
+
+    .product-badge {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 4px;
+      margin-bottom: 20px;
+      width: fit-content;
+    }
+    .badge-live { background: rgba(79,142,247,0.15); color: var(--accent); }
+    .badge-coming { background: rgba(124,92,252,0.15); color: #a78bfa; }
+
+    .product-icon {
+      font-size: 2rem;
+      margin-bottom: 16px;
+      line-height: 1;
+    }
+
+    .product-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.375rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+
+    .product-card p {
+      color: var(--body-text);
+      font-size: 0.9375rem;
+      line-height: 1.65;
+      flex: 1;
+      margin-bottom: 28px;
+    }
+
+    .product-link {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--accent);
+      display: inline-flex; align-items: center; gap: 6px;
+      transition: gap 0.2s;
+    }
+    .product-link:hover { gap: 10px; }
+
+    /* ── WHY ── */
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2px;
+      border: 1px solid var(--rule);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-top: 56px;
+    }
+
+    .why-item {
+      padding: 36px 32px;
+      background: var(--ink-soft);
+      border-right: 1px solid var(--rule);
+    }
+    .why-item:last-child { border-right: none; }
+
+    .why-item h3 {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .why-item p {
+      font-size: 0.875rem;
+      color: var(--body-text);
+      line-height: 1.65;
+    }
+
+    /* ── BUILT FOR ── */
+    .audiences {
+      background: var(--ink-soft);
+    }
+
+    .audience-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-top: 48px;
+    }
+
+    .audience-card {
+      background: var(--ink);
+      border: 1px solid var(--rule);
+      border-radius: 10px;
+      padding: 28px 24px;
+      transition: border-color 0.2s;
+    }
+    .audience-card:hover { border-color: var(--accent); }
+
+    .audience-icon { font-size: 1.75rem; margin-bottom: 12px; }
+
+    .audience-card h4 {
+      font-family: var(--font-display);
+      font-size: 0.9375rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .audience-card p {
+      font-size: 0.8125rem;
+      color: var(--body-text);
+      line-height: 1.6;
+    }
+
+    /* ── ACQUISITION STRIP ── */
+    .acquisition {
+      background: linear-gradient(135deg, rgba(79,142,247,0.08), rgba(124,92,252,0.08));
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .acquisition-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .acquisition h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+
+    .acquisition p {
+      color: var(--body-text);
+      font-size: 0.9375rem;
+      max-width: 480px;
+      line-height: 1.65;
+    }
+
+    /* ── CTA ── */
+    .cta-section {
+      text-align: center;
+    }
+
+    .cta-section h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3.25rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 20px;
+      line-height: 1.05;
+    }
+    .cta-section h2 em {
+      font-style: normal;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .cta-section p {
+      color: var(--body-text);
+      font-size: 1.0625rem;
+      margin-bottom: 40px;
+      max-width: 480px;
+      margin-left: auto; margin-right: auto;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--rule);
+      padding: 48px 24px;
+    }
+
+    .footer-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .footer-logo {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+    }
+    .footer-logo span { color: var(--accent); }
+
+    .footer-links {
+      display: flex; gap: 32px; list-style: none; flex-wrap: wrap;
+    }
+    .footer-links a {
+      font-size: 0.875rem;
+      color: var(--body-text);
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--white); }
+
+    .footer-copy {
+      font-size: 0.8125rem;
+      color: var(--muted);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      section { padding: 64px 20px; }
+      .products-intro { flex-direction: column; align-items: flex-start; }
+      .why-grid { grid-template-columns: 1fr; }
+      .why-item { border-right: none; border-bottom: 1px solid var(--rule); }
+      .why-item:last-child { border-bottom: none; }
+      .acquisition-inner { flex-direction: column; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">Swift<span>AI</span> Hub</div>
+    <ul class="nav-links">
+      <li><a href="#products">Products</a></li>
+      <li><a href="/agency/">For Agencies</a></li>
+      <li><a href="/pricing/">Pricing</a></li>
+      <li><a href="https://linesightdigital.com" target="_blank">LineSight Digital</a></li>
+    </ul>
+    <a href="https://app.linesightdigital.com" class="nav-links nav-cta" target="_blank">Try Demo →</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-eyebrow">AI Tools for Local Offices</div>
+    <h1>Practical AI for <em>professional offices</em> that can't miss a lead.</h1>
+    <p class="hero-sub">SwiftAI Hub builds focused AI tools for dental offices, law firms, and real estate practices — software that does one job well and hands off to your team.</p>
+    <div class="hero-actions">
+      <a href="#products" class="btn-primary">See Our Products</a>
+      <a href="https://app.linesightdigital.com" class="btn-ghost" target="_blank">Try Live Demo</a>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section class="products" id="products">
+    <div class="container">
+      <div class="products-intro">
+        <div>
+          <div class="section-label">Products</div>
+          <h2 class="section-heading">Tools built for one job each.</h2>
+          <p class="section-sub">No bloated platforms. Each product solves a specific problem for local professional offices — and solves it well.</p>
+        </div>
+      </div>
+      <div class="product-grid">
+
+        <!-- Product 1: Frontdesk Agent -->
+        <div class="product-card featured">
+          <span class="product-badge badge-live">Live — Private Pilot</span>
+          <div class="product-icon">🏥</div>
+          <h3>Frontdesk Agent</h3>
+          <p>After-hours website assistant for dental offices, law firms, and real estate practices. Answers common questions, captures lead details, and routes serious requests to your team — without giving medical or legal advice.</p>
+          <a href="/frontdesk/" class="product-link">Learn more →</a>
+        </div>
+
+        <!-- Product 2: Coming Soon -->
+        <div class="product-card">
+          <span class="product-badge badge-coming">In Development</span>
+          <div class="product-icon">📋</div>
+          <h3>Intake Assistant</h3>
+          <p>Structured intake for new patients, new clients, and consultation requests. Collects the right information before the first appointment — so your staff walks in prepared, not catching up.</p>
+          <a href="#" class="product-link" style="color: var(--muted); pointer-events: none;">Coming soon</a>
+        </div>
+
+        <!-- Product 3: Coming Soon -->
+        <div class="product-card">
+          <span class="product-badge badge-coming">In Development</span>
+          <div class="product-icon">📅</div>
+          <h3>Follow-Up Scheduler</h3>
+          <p>Automated follow-up for leads that went quiet. Sends a short, human-sounding message at the right time and routes any replies directly to your team for a real conversation.</p>
+          <a href="#" class="product-link" style="color: var(--muted); pointer-events: none;">Coming soon</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY -->
+  <section>
+    <div class="container">
+      <div class="section-label">Our approach</div>
+      <h2 class="section-heading">Built different from the start.</h2>
+      <div class="why-grid">
+        <div class="why-item">
+          <h3>Vertical-specific</h3>
+          <p>Each tool is built for a specific office type — not a generic chatbot with a few settings changed. Dental, legal, and real estate each have different rules about what AI should and shouldn't do.</p>
+        </div>
+        <div class="why-item">
+          <h3>Hard limits by default</h3>
+          <p>Our tools never give medical, legal, or financial advice. That guardrail is built in — not a checkbox a customer can turn off. Offices need to trust what they put on their website.</p>
+        </div>
+        <div class="why-item">
+          <h3>Human handoff always</h3>
+          <p>Every product routes to a real person at the right moment. The AI handles intake. Your team handles everything that needs professional judgment. Clear handoff, every time.</p>
+        </div>
+        <div class="why-item">
+          <h3>Installs in days, not months</h3>
+          <p>One script tag. Configured for your office specifically. No platform migration, no development project. Live within days of signup.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BUILT FOR -->
+  <section class="audiences">
+    <div class="container">
+      <div class="section-label">Who it's for</div>
+      <h2 class="section-heading">Built for offices that get leads after hours.</h2>
+      <p class="section-sub">If your website gets traffic when no one's in the office, SwiftAI Hub tools put a professional first response in place.</p>
+      <div class="audience-grid">
+        <div class="audience-card">
+          <div class="audience-icon">🦷</div>
+          <h4>Dental Offices</h4>
+          <p>New patient inquiries, appointment requests, insurance questions — covered after hours.</p>
+        </div>
+        <div class="audience-card">
+          <div class="audience-icon">⚖️</div>
+          <h4>Law Firms</h4>
+          <p>Consultation requests captured without giving legal advice. Routed to the right attorney.</p>
+        </div>
+        <div class="audience-card">
+          <div class="audience-icon">🏠</div>
+          <h4>Real Estate</h4>
+          <p>Buyer and seller inquiries collected after hours. Leads kept warm until your agents follow up.</p>
+        </div>
+        <div class="audience-card">
+          <div class="audience-icon">🏥</div>
+          <h4>Medical Practices</h4>
+          <p>New patient intake, general questions answered, clinical queries always routed to staff.</p>
+        </div>
+        <div class="audience-card">
+          <div class="audience-icon">💼</div>
+          <h4>Accounting & CPA</h4>
+          <p>After-hours inquiries about services and appointments — no sensitive financial advice given.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACQUISITION STRIP -->
+  <section class="acquisition">
+    <div class="container">
+      <div class="acquisition-inner">
+        <div>
+          <h2>Interested in acquiring or licensing SwiftAI Hub?</h2>
+          <p>SwiftAI Hub is a portfolio of vertical AI tools with live products, real traction, and a clean Next.js + Supabase codebase. We're open to acquisition conversations, white-label licensing, and agency partnerships.</p>
+        </div>
+        <a href="/agency/" class="btn-primary" style="white-space: nowrap;">Talk to us →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Your office shouldn't go <em>dark</em> at 5pm.</h2>
+      <p>Try Frontdesk Agent — live demo, no signup required. See exactly how it handles a real inquiry.</p>
+      <div class="hero-actions" style="justify-content: center;">
+        <a href="https://app.linesightdigital.com" class="btn-primary" target="_blank">Try the Live Demo</a>
+        <a href="https://linesightdigital.com/#contact" class="btn-ghost" target="_blank">Talk to Suresh</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">Swift<span>AI</span> Hub</div>
+      <ul class="footer-links">
+        <li><a href="#products">Products</a></li>
+        <li><a href="/frontdesk/">Frontdesk Agent</a></li>
+        <li><a href="/agency/">For Agencies</a></li>
+        <li><a href="/pricing/">Pricing</a></li>
+        <li><a href="https://linesightdigital.com" target="_blank">LineSight Digital</a></li>
+      </ul>
+      <p class="footer-copy">© 2026 SwiftAI Hub · A LineSight Digital product · San Jose, CA</p>
+    </div>
+  </footer>
+
+</body>
+</html>
