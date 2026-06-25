@@ -659,5 +659,19 @@
   </footer>
 
   <script async src="https://frontdesk.linesightdigital.com/widget.js" data-office="swiftai-demo-office"></script>
+  <script>
+    (function () {
+      var attempts = 0;
+      var opener = window.setInterval(function () {
+        var button = document.querySelector('button[aria-label="Open Frontdesk Agent chat"]');
+        attempts += 1;
+        if (button) {
+          button.click();
+          window.clearInterval(opener);
+        }
+        if (attempts > 40) window.clearInterval(opener);
+      }, 250);
+    })();
+  </script>
 </body>
 </html>
